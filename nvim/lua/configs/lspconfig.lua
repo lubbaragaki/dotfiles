@@ -4,19 +4,21 @@ local servers = {
   "html",
   "cssls",
   "checkmake",
-  "codelldb",
   "intelephense",
-  "python-lsp-server",
+  "pylsp",
   "yamlls",
   "nixd",
   "qmlls",
-  "remark-language-server",
-  "dockerfile-language-server",
+  "remark_ls",
+  "dockerls",
   "rubocop",
-  "stylua",
-  "typescript-language-server",
-  "vim-language-server",
+  "ts_ls",
+  "vimls",
 }
-vim.lsp.enable(servers)
 
--- read :h vim.lsp.config for changing options of lsp servers
+local lspconfig = require("lspconfig")
+
+for _, server in ipairs(servers) do
+  vim.lsp.config(server, {})
+  vim.lsp.enable(server)
+end
